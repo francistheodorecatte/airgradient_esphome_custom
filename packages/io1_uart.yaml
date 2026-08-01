@@ -1,0 +1,5 @@
+uart:
+  - rx_pin: GPIO4
+    tx_pin: GPIO5
+    baud_rate: 9600
+    id: io1_uart
