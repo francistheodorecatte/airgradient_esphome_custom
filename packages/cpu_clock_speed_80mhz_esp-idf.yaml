@@ -1,0 +1,11 @@
+# Save power by reducing CPU clock speed.
+esphome:
+  cpu_frequency: 80MHz
+
+esp32:
+  framework:
+    advanced:
+      compiler_optimization: PERF
+      assertion_level: DISABLE
+      enable_lwip_assert: false
+      enable_lwip_mdns_queries: false
