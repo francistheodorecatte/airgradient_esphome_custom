@@ -4,6 +4,6 @@ web_server:
     password: !secret webauth_password
     type: digest
   include_internal: true
-  enable_private_network_access: true
+  #enable_private_network_access: true
   local: true
   version: 3
