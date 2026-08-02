@@ -1,2 +1,3 @@
 preferences:
   flash_write_interval: 24h
+  rtc_storage: true #new!
