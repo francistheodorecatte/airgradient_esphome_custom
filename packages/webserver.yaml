@@ -1,0 +1,9 @@
+web_server:
+  auth:
+    username: admin
+    password: !secret webauth_pass
+    type: digest
+  include_internal: true
+  enable_private_network_access: true
+  local: true
+  version: 3
