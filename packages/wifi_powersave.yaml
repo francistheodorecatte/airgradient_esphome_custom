@@ -1,0 +1,8 @@
+wifi:
+  power_save_mode: HIGH
+  fast_connect:
+    enabled: true
+    storage: rtc #saves flash wear
+  # also enable roaming support
+  enable_btm: true
+  enable_rrm: true
