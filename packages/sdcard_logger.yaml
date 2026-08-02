@@ -20,12 +20,15 @@ time:
 
 sd_card:
   id: mmc0
-  # unrouted pins on ESP32C3 module
+  # unrouted pins on ESP32C3 module; righthand edge with antenna 'up'.
   # connect to a breakout like ICB00415
-  cmd_pin: 32 # MOSI
-  clk_pin: 33 # SCK
-  data0_pin: 34 # MISO / DATA0
-  mode_1bit: true
+  cmd_pin: 28 # MOSI
+  clk_pin: 29 # SCK
+  data0_pin: 32 # MISO / DATA0
+  data1_pin: 33 # DATA1
+  data2_pin: 34 # DATA2
+  data3_pin: 35 # DATA3
+  mode_1bit: false
 
 webserver_sd:
   id: file_server
