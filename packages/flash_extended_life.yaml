@@ -4,3 +4,7 @@ preferences:
 
 safe_mode:
   storage: rtc
+
+wifi:
+  fast_connect:
+    storage: rtc
