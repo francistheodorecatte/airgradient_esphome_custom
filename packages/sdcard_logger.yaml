@@ -1,0 +1,89 @@
+esp32:
+  framework:
+    sdkconfig_options:
+      CONFIG_FATFS_LFN_HEAP: "y"   # heap-allocate LFN buffer, keeps task stacks safe
+      CONFIG_FATFS_LFN: "2"        # 2 = heap allocation mode (1 = stack)
+      CONFIG_FATFS_FS_EXFAT: "y"  # exFAT support for SDXC cards (>= 32 GB); FAT32 still works
+
+external_components:
+  - source: github://andrewbackway/esphome-sd_card_logger_web
+    components: [sd_card, sd_logger, webserver_sd]
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+sd_card:
+  id: mmc0
+  # unrouted pins on ESP32C3 module
+  cmd_pin: 32 # MOSI
+  clk_pin: 33 # SCK
+  data0_pin: 34 # MISO / DATA0
+  power_control_pin: 35
+  mode_1bit: true
+
+webserver_sd:
+  id: file_server
+  sd_card_id: mmc0
+  url_prefix: "sdcard"
+  sd_path: "/logs"
+  enable_deletion: true
+  enable_download: true
+  enable_upload: false
+
+sd_logger:
+  id: sd_logger1
+  sd_card_id: mmc0
+  time_id: sntp_time
+  queue_size: 50
+  task_priority: 1
+  timestamp_format: "%Y-%m-%d %H:%M:%S"  # Optional: Standard strftime formatting, defaults to %s (Unix epoch integer)
+  #fsync_interval: 30s
+  # experimental features for cloud sync (not implemented yet)
+  #upload_url: "https://example.com/api/upload"
+  #bearer_token: "TODO"
+  #ping_url: "https://example.com/ping"
+  #ping_interval: 60s
+  #ping_timeout: 5s
+  #backoff_initial: 30s
+  #backoff_max: 15min
+  sync_online:
+    name: "Cloud Sync Online"
+  sync_sending_backlog:
+    name: "Cloud Sync Backlog"
+
+sensor:
+  - platform: sd_card
+    sd_card_id: mmc0
+    type: used_space
+    name: "SD Used (GB)"
+    entity_category: diagnostic
+    filters:
+      - lambda: return (float)sd_card::convertBytes((uint64_t)x, sd_card::MemoryUnits::GigaByte);
+  - platform: sd_card
+    sd_card_id: mmc0
+    type: total_space
+    name: "SD Card Capacity (GB)"
+    entity_category: diagnostic
+    filters:
+      - lambda: return (float)sd_card::convertBytes((uint64_t)x, sd_card::MemoryUnits::GigaByte);
+  - platform: sd_card
+    sd_card_id: mmc0
+    type: free_space
+    name: "SD Card Remaining (GB)"
+    entity_category: diagnostic
+    filters:
+      - lambda: return (float)sd_card::convertBytes((uint64_t)x, sd_card::MemoryUnits::GigaByte);
+
+text_sensor:
+  - platform: sd_card
+    sd_card_id: mmc0
+    entity_category: diagnostic
+    sd_card_type:
+      name: "SD Card Type"
+
+binary_sensor:
+  - platform: template
+    name: "SD Card Present"
+    lambda: "return id(mmc0).is_directory(\"/\");"
+    entity_category: diagnostic

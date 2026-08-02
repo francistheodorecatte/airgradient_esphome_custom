@@ -1,0 +1,55 @@
+sd_logger:
+  logs:
+    - name: "AQI"
+      folder: "enviromental"
+      file_prefix: "aqi"
+      log_interval: 120s
+      rotation: weekly
+      sensors:
+        - sensor_id: pm_2_5_aqi
+        - sensor_id: aqi_epa_outdoor
+        - sensor_id: nowcast
+
+    - name: "PM"
+      folder: "environmental"
+      file_prefix: "pm"
+      log_interval: 120s
+      rotation: weekly
+      sensors:
+        - sensor_id: pm_2_5_1h_avg
+        - sensor_id: pm_10_0_1h_avg
+        - sensor_id: pm_2_5_avg
+        - sensor_id: pm_1_0_avg
+        - sensor_id: pm_10_0_avg
+        - sensor_id: pm_0_3um_avg
+        - sensor_id: pm_2_5_avg
+
+    - name: "TH"
+      folder: "environmental"
+      file_prefix: "th"
+      log_interval: 120s
+      rotation: weekly
+      sensors:
+        - sensor_id: temp_avg
+        - sensor_id: humidity_avg
+
+    - name: "Gases"
+      folder: "environmental"
+      file_prefix: "gas"
+      log_interval: 60s
+      rotation: weekly
+      sensors:
+        - sensor_id: voc
+        - sensor_id: nox
+        - sensor_id: senseair_co2
+
+    - name: "Diagnostic"
+      folder: "diagnostic"
+      file_prefix: "diag"
+      log_interval: 120s
+      rotation: weekly
+      sensors:
+        - sensor_id: sys_esp_temperature
+        - sensor_id: esp_memory
+        - sensor_id: device_uptime
+        - sensor_id: wifi_dbm
