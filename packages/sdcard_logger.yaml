@@ -1,5 +1,10 @@
 esp32:
   framework:
+    advanced:
+      include_builtin_idf_components: ["fatfs", "spiffs"]
+      disable_vfs_support_termios: false
+      disable_vfs_support_select: false
+      disable_vfs_support_dir: false
     sdkconfig_options:
       CONFIG_FATFS_LFN_HEAP: "y"   # heap-allocate LFN buffer, keeps task stacks safe
       CONFIG_FATFS_LFN: "2"        # 2 = heap allocation mode (1 = stack)
@@ -16,10 +21,10 @@ time:
 sd_card:
   id: mmc0
   # unrouted pins on ESP32C3 module
+  # connect to a breakout like ICB00415
   cmd_pin: 32 # MOSI
   clk_pin: 33 # SCK
   data0_pin: 34 # MISO / DATA0
-  power_control_pin: 35
   mode_1bit: true
 
 webserver_sd:
@@ -38,7 +43,7 @@ sd_logger:
   queue_size: 50
   task_priority: 1
   timestamp_format: "%Y-%m-%d %H:%M:%S"  # Optional: Standard strftime formatting, defaults to %s (Unix epoch integer)
-  #fsync_interval: 30s
+  fsync_interval: 240s
   # experimental features for cloud sync (not implemented yet)
   #upload_url: "https://example.com/api/upload"
   #bearer_token: "TODO"
