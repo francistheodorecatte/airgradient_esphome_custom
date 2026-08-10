@@ -1,5 +1,8 @@
 uart:
-  - rx_pin: GPIO4
-    tx_pin: GPIO5
+  - id: io1_uart
+    rx_pin: GPIO5
+    tx_pin: GPIO4
     baud_rate: 9600
-    id: io1_uart
+
+logger:
+  baud_rate: 0 #ESP32C3 only has three UARTs and one is (normally) reserved for the USB UART
