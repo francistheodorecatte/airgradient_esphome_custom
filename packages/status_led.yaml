@@ -7,4 +7,4 @@ light:
 output:
   - platform: gpio
     id: blue_led
-    pin:gpio10
+    pin: gpio10
