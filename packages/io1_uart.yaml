@@ -1,7 +1,7 @@
 uart:
   - id: io1_uart
-    rx_pin: GPIO4
-    tx_pin: GPIO5
+    rx_pin: GPIO4 #GPIO4 is an input only on the ESP32C3
+    tx_pin: GPIO3 #GPIO3 can do in, out, and high impedance.
     baud_rate: 9600
 
 logger:
