@@ -1,0 +1,12 @@
+light:
+  - platform: status_led
+    id: ext_status_led
+    name: "Status LED"
+    output: blue_led
+
+output:
+  - platform: gpio
+    id: blue_led
+    pin:
+      number: 10
+      drive_strength: 5mA #the thing's too dammn bright!
