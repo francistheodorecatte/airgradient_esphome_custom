@@ -10,3 +10,5 @@ output:
     pin:
       number: 10
       drive_strength: 5mA #the thing's too dammn bright!
+      inverted: true
+      mode: OUTPUT_OPEN_DRAIN
