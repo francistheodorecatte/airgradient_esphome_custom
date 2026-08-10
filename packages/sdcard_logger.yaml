@@ -21,6 +21,7 @@ time:
 sd_card:
   id: mmc0
   # unrouted pins on ESP32C3 module; righthand edge with antenna 'up'.
+  # note: these are UNDER the module!
   # connect to a breakout like ICB00415
   cmd_pin: 28 # MOSI
   clk_pin: 29 # SCK
