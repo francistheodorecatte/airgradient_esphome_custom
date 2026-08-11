@@ -1,0 +1,39 @@
+esphome:
+  on_boot:
+    priority: 900.0
+    then: #make sure the wk2132 is in a known state
+      - output.turn_off: wk2132_rst
+      - delay: 10ms
+      - output.turn_on: wk2132_rst
+      - delay: 50ms
+
+wk2168_i2c:
+  - id: wk2132_bridge
+    uart:
+      - id: i2c_uart_0
+        channel: 0
+        baud_rate: 9600
+      - id: i2c_uart_1
+        channel: 1
+        baud_rate: 0
+
+output:
+  - platform: gpio
+    id: wk2132_rst
+    pin:
+      number: 3
+      inverted: true #pull low to reset
+      mode:
+        output: true
+        pullup: true
+
+binary_sensor:
+  - platform: gpio
+    id: wk2132_int
+    internal: true
+    pin:
+      number: 4
+      inverted: true #active low per datasheet
+      mode:
+        input: true
+        pullup: true
