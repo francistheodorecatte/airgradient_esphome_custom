@@ -98,5 +98,5 @@ esphome:
 http_request:
   # Used to support POST request to send data to AirGradient
   # https://esphome.io/components/http_request.html
-  verify_ssl: true # Only set to true if certficate bundle is provided
+  verify_ssl: false # Only set to true if certficate bundle is provided
   watchdog_timeout: 30s  # Slow response from API server can cause watchdog to reboot device
