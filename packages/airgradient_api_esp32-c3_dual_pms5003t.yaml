@@ -1,4 +1,12 @@
 # Used with the Open Air O-PPT1 with dual PMS5003T sensors
+esp32:
+  framework:
+    advanced:
+      # enable TLS connections
+      use_full_certificate_bundle: true
+      disable_mbedtls_peer_cert: false
+      disable_mbedtls_pkcs7: false
+
 interval:
   - interval: 2.5min
     # Send data to AirGradient API server
@@ -90,5 +98,5 @@ esphome:
 http_request:
   # Used to support POST request to send data to AirGradient
   # https://esphome.io/components/http_request.html
-  verify_ssl: false # Only set to true if certficate bundle is provided
+  verify_ssl: true # Only set to true if certficate bundle is provided
   watchdog_timeout: 30s  # Slow response from API server can cause watchdog to reboot device
