@@ -1,0 +1,15 @@
+esp32:
+  cpu_frequency: 160MHz
+  framework:
+    advanced:
+      compiler_optimization: PERF
+      assertion_level: DISABLE
+      enable_lwip_assert: false
+      enable_lwip_mdns_queries: false
+
+# enable power management clock scaler
+power_management:
+  - platform: esp32_power_management
+    enable_light_sleep: true
+    min_frequency: 2MHz
+    max_frequency: 160MHz
