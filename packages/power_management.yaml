@@ -13,9 +13,3 @@ power_management:
     enable_light_sleep: true
     min_frequency: 10MHz
     max_frequency: 80MHz
-
-uart:
-  - id: !extend senseair_co2_uart
-    rx_buffer_size: 1024
-  - id: !extend pms5003_uart
-    rx_buffer_size: 1024
