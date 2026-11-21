@@ -1,5 +1,5 @@
 esp32:
-  cpu_frequency: 160MHz
+  cpu_frequency: 80MHz
   framework:
     advanced:
       compiler_optimization: PERF
@@ -10,6 +10,7 @@ esp32:
 # enable power management clock scaler
 power_management:
   - platform: esp32_power_management
-    enable_light_sleep: true
+    enable_light_sleep: false
+    power_down_peripherals: false
     min_frequency: 2MHz
-    max_frequency: 160MHz
+    max_frequency: 80MHz
