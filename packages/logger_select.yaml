@@ -1,0 +1,16 @@
+esphome:
+  on_boot:
+    - priority: -100
+      then:
+        - logger.set_level: INFO #debug only when set manually!
+
+logger:
+  level: VERBOSE #set to INFO after boot
+  logs:
+    wifi: NONE
+    esp-idf: NONE
+
+select:
+  - platform: logger
+    name: "Log level select"
+    entity_category: diagnostic
