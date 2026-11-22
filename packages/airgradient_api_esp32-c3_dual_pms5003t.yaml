@@ -100,3 +100,5 @@ http_request:
   # https://esphome.io/components/http_request.html
   verify_ssl: false # Only set to true if certficate bundle is provided
   watchdog_timeout: 30s  # Slow response from API server can cause watchdog to reboot device
+  buffer_size_tx: 2048
+  follow_redirects: false
