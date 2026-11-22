@@ -19,3 +19,6 @@ uart:
     clock_source: XTAL
   - id: !extend pms5003_uart
     clock_source: XTAL
+
+api:
+  batch_delay: 50ms #workaround for sensor readings occasionally not posting to the API
