@@ -10,6 +10,12 @@ esp32:
 # enable power management clock scaler
 power_management:
   - platform: esp32_power_management
-    enable_light_sleep: true
-    min_frequency: 10MHz
+    enable_light_sleep: false
+    min_frequency: 2MHz
     max_frequency: 80MHz
+
+uart:
+  - id: !extend senseair_co2_uart
+    clock_source: XTAL
+  - id: !extend pms5003_uart
+    clock_source: XTAL
