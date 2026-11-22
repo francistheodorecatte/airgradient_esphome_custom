@@ -6,9 +6,6 @@ esphome:
 
 logger:
   level: VERBOSE #set to INFO after boot
-  logs:
-    wifi: NONE
-    esp-idf: NONE
 
 select:
   - platform: logger
